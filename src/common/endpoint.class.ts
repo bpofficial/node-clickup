@@ -1,5 +1,7 @@
 import { Request } from "./request.class";
 
+type Query = { [i: string]: string | number };
+
 export class Endpoint {
 	private _request: Request;
 
@@ -9,8 +11,26 @@ export class Endpoint {
 		this._request = request;
 	}
 
-	protected get() {}
-	protected post() {}
-	protected put() {}
-	protected delete() {}
+	private joinPaths(path: string, queryOpts?: Query) {
+		const queryStr = Object.keys(queryOpts)
+			.map((key) => `${key}=${queryOpts[key]}`)
+			.join("&");
+		return [[this.path, path].join("/"), queryStr].join("?");
+	}
+
+	protected get<R>(path: string, queryOpts?: Query) {
+		return this._request.get<R>(this.joinPaths(path, queryOpts));
+	}
+
+	protected post<T, R>(body: T, path = "") {
+		return this._request.post<T, R>(path, body);
+	}
+
+	protected put<T, R>(body: T, path = "") {
+		return this._request.put<T, R>(path, body);
+	}
+
+	protected delete<R>(path: string) {
+		return this._request.delete<R>(path);
+	}
 }
