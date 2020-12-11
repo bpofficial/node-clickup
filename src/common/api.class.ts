@@ -3,6 +3,7 @@ import { Checklists } from "../endpoints/checklists";
 import { Comments } from "../endpoints/comments";
 import { CustomFields } from "../endpoints/custom-fields";
 import { Dependencies } from "../endpoints/dependencies";
+import { Folders } from "../endpoints/folders";
 import { Request } from "./request.class";
 
 export class ClickUp {
@@ -14,6 +15,7 @@ export class ClickUp {
 	private _comments: Comments;
 	private _customFields: CustomFields;
 	private _dependencies: Dependencies;
+	private _folders: Folders;
 
 	constructor() {
 		this.request = new Request(this.root);
@@ -26,6 +28,7 @@ export class ClickUp {
 		this._comments = new Comments(this.request);
 		this._customFields = new CustomFields(this.request);
 		this._dependencies = new Dependencies(this.request);
+		this._folders = new Folders(this.request);
 	}
 
 	public setPersonalApiKey(key: string) {
@@ -56,5 +59,9 @@ export class ClickUp {
 
 	get Dependencies() {
 		return this._dependencies;
+	}
+
+	get Folders() {
+		return this._folders;
 	}
 }
