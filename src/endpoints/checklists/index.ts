@@ -1,15 +1,20 @@
 import { Endpoint } from "../../common/endpoint.class";
+import { Request } from "../../common/request.class";
 import {
+	CreateChecklistItem,
 	CreateChecklistItemOpts,
 	CreateChecklistOpts,
 	CreateChecklistResponse,
+	UpdateChecklistItem,
+	UpdateChecklistItemOpts,
+	UpdateChecklistItemResponse,
 	UpdateChecklistOpts,
 	UpdateChecklistResponse,
 } from "./interfaces";
 
 export class Checklists extends Endpoint {
-	constructor() {
-		super("");
+	constructor(request: Request) {
+		super("", request);
 	}
 
 	public async createChecklist({ taskId, data }: CreateChecklistOpts) {
@@ -34,13 +39,29 @@ export class Checklists extends Endpoint {
 		checklistId,
 		data,
 	}: CreateChecklistItemOpts) {
-		return this.post<unknown, CreateChecklistResponse>(
+		return this.post<CreateChecklistItem, CreateChecklistResponse>(
 			data,
 			`/checklist/${checklistId}/checklist_item`
 		);
 	}
 
-	public async updateChecklistItem({ checklistId, checklistItemId, data }) {}
+	public async updateChecklistItem({
+		checklistId,
+		checklistItemId,
+		data,
+	}: UpdateChecklistItemOpts) {
+		return this.put<UpdateChecklistItem, UpdateChecklistItemResponse>(
+			data,
+			`/checklist/${checklistItemId}/checklist_item/${checklistId}`
+		);
+	}
 
-	public async deleteChecklistItem(checklistId, checklistItemId) {}
+	public async deleteChecklistItem(
+		checklistId: string,
+		checklistItemId: string
+	) {
+		return this.delete<void>(
+			`/checklist/${checklistId}/checklist_item/${checklistItemId}`
+		);
+	}
 }

@@ -61,8 +61,17 @@ export interface CreateChecklistItemOpts {
 
 export type CreateChecklistItemResponse = CreateChecklistResponse;
 
-export interface UpdateChecklistItem {}
+export interface UpdateChecklistItem {
+	name?: string;
+	assignee?: number;
+	resolved?: boolean;
+	parent?: unknown;
+}
 
-export interface UpdateChecklistItemOpts {}
+export interface UpdateChecklistItemOpts {
+	checklistId: string;
+	checklistItemId: string;
+	data: UpdateChecklistItem;
+}
 
-export interface UpdateChecklistItemResponse {}
+export type UpdateChecklistItemResponse = CreateChecklistResponse;
