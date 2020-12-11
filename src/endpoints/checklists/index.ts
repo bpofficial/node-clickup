@@ -65,3 +65,5 @@ export class Checklists extends Endpoint {
 		);
 	}
 }
+
+export * from "./interfaces";

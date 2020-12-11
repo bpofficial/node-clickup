@@ -44,3 +44,5 @@ export class Folders extends Endpoint {
 		return this.get<GetFolderResponse>(`/folder/${folderId}`);
 	}
 }
+
+export * from "./interfaces";

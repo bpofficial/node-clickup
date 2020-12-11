@@ -77,3 +77,5 @@ export class Comments extends Endpoint {
 		return this.delete<void>(`/comment/${commentId}`);
 	}
 }
+
+export * from "./interfaces";

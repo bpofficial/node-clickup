@@ -63,3 +63,5 @@ export class Dependencies extends Endpoint {
 		);
 	}
 }
+
+export * from "./interfaces";

@@ -39,3 +39,5 @@ export class CustomFields extends Endpoint {
 		);
 	}
 }
+
+export * from "./interfaces";

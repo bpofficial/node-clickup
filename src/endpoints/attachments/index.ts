@@ -16,3 +16,5 @@ export class Attachments extends Endpoint {
 		);
 	}
 }
+
+export * from "./interfaces";
