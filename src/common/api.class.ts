@@ -1,15 +1,19 @@
 import { Attachments } from "../endpoints/attachments";
 import { Checklists } from "../endpoints/checklists";
 import { Comments } from "../endpoints/comments";
+import { CustomFields } from "../endpoints/custom-fields";
+import { Dependencies } from "../endpoints/dependencies";
 import { Request } from "./request.class";
 
-export class API {
+export class ClickUp {
 	private request: Request;
 	private readonly root = "https://api.clickup.com/api/v2/";
 
 	private _attachments: Attachments;
 	private _checklists: Checklists;
 	private _comments: Comments;
+	private _customFields: CustomFields;
+	private _dependencies: Dependencies;
 
 	constructor() {
 		this.request = new Request(this.root);
@@ -20,6 +24,8 @@ export class API {
 		this._attachments = new Attachments(this.request);
 		this._checklists = new Checklists(this.request);
 		this._comments = new Comments(this.request);
+		this._customFields = new CustomFields(this.request);
+		this._dependencies = new Dependencies(this.request);
 	}
 
 	public setPersonalApiKey(key: string) {
@@ -32,15 +38,23 @@ export class API {
 		this.updateRequest();
 	}
 
-	get attachments() {
+	get Attachments() {
 		return this._attachments;
 	}
 
-	get checklists() {
+	get Checklists() {
 		return this._checklists;
 	}
 
-	get comments() {
+	get Comments() {
 		return this._comments;
+	}
+
+	get CustomFields() {
+		return this._customFields;
+	}
+
+	get Dependencies() {
+		return this._dependencies;
 	}
 }
