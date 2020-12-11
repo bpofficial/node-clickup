@@ -27,7 +27,7 @@ export class Endpoint {
 		return this.request.put<T, R>(path, body);
 	}
 
-	protected delete<R>(path: string) {
-		return this.request.delete<R>(path);
+	protected delete<R>(path: string, queryOpts?: Query) {
+		return this.request.delete<R>(this.joinPaths(path, queryOpts));
 	}
 }
