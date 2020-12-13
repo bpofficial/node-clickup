@@ -15,7 +15,7 @@ export class Request {
 		return Axios({
 			method,
 			data: body,
-			url: [this.path, path].join("/"),
+			url: this.path + path.replace(/\/\/+/g, "/"),
 			headers: {
 				Authorization: this.apiKey,
 				"Content-Type": "application/json",

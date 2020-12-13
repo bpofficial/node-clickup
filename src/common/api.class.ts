@@ -10,7 +10,7 @@ import { Request } from "./request.class";
 
 export class ClickUp {
 	private request: Request;
-	private readonly root = "https://api.clickup.com/api/v2/";
+	private readonly root = "https://api.clickup.com/api/v2";
 
 	private _attachments!: Attachments;
 	private _checklists!: Checklists;

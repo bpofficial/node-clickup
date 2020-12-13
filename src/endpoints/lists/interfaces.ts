@@ -34,7 +34,7 @@ export interface CreateListResponse {
 		priority: string;
 		color: string;
 	};
-	assignee: User;
+	assignee: User | null;
 	task_count: string | number | null;
 	due_date: string;
 	due_date_time: boolean;
@@ -76,8 +76,8 @@ export interface UpdateListOpts {
 }
 
 export type UpdateListResponse = CreateListResponse;
+export type GetListsResponse = CreateListResponse[];
 
-export interface GetListsOpts {}
 export interface GetFolderlessListsOpts {}
 export interface GetListOpts {}
 export interface AddTaskToListOpts {}

@@ -8,7 +8,7 @@ import {
 	CreateListResponse,
 	GetFolderlessListsOpts,
 	GetListOpts,
-	GetListsOpts,
+	GetListsResponse,
 	RemoveTaskFromListOpts,
 	UpdateList,
 	UpdateListOpts,
@@ -45,9 +45,17 @@ export class Lists extends Endpoint {
 		return this.delete<void>(`/list/${listId}`);
 	}
 
-	public async getLists(opts: GetListsOpts) {}
+	public async getLists(folderId: number, archived = false) {
+		return this.get<GetListsResponse>(`/folder/${folderId}/list`, {
+			archived: archived ? "true" : "false",
+		});
+	}
+
 	public async getFolderlessLists(opts: GetFolderlessListsOpts) {}
+
 	public async getList(opts: GetListOpts) {}
+
 	public async addTaskToList(opts: AddTaskToListOpts) {}
+
 	public async removeTaskFromList(opts: RemoveTaskFromListOpts) {}
 }
