@@ -5,6 +5,7 @@ import { CustomFields } from "../endpoints/custom-fields";
 import { Dependencies } from "../endpoints/dependencies";
 import { Folders } from "../endpoints/folders";
 import { Lists } from "../endpoints/lists";
+import { Spaces } from "../endpoints/spaces";
 import { Request } from "./request.class";
 
 export class ClickUp {
@@ -18,6 +19,7 @@ export class ClickUp {
 	private _dependencies!: Dependencies;
 	private _folders!: Folders;
 	private _lists!: Lists;
+	private _spaces!: Spaces;
 
 	constructor() {
 		this.request = new Request(this.root);
@@ -32,6 +34,7 @@ export class ClickUp {
 		this._dependencies = new Dependencies(this.request);
 		this._folders = new Folders(this.request);
 		this._lists = new Lists(this.request);
+		this._spaces = new Spaces(this.request);
 	}
 
 	public setPersonalApiKey(key: string) {
@@ -70,6 +73,10 @@ export class ClickUp {
 
 	get Lists() {
 		return this._lists;
+	}
+
+	get Spaces() {
+		return this._spaces;
 	}
 }
 
