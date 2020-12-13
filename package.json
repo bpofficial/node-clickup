@@ -1,6 +1,6 @@
 {
 	"name": "node-clickup",
-	"version": "0.1.0-1",
+	"version": "0.1.1",
 	"description": "A NodeJs ClickUp REST api sdk",
 	"main": "lib/index.js",
 	"author": "Brayden Phillips",
