@@ -4,18 +4,20 @@ import { Comments } from "../endpoints/comments";
 import { CustomFields } from "../endpoints/custom-fields";
 import { Dependencies } from "../endpoints/dependencies";
 import { Folders } from "../endpoints/folders";
+import { Lists } from "../endpoints/lists";
 import { Request } from "./request.class";
 
 export class ClickUp {
 	private request: Request;
 	private readonly root = "https://api.clickup.com/api/v2/";
 
-	private _attachments: Attachments;
-	private _checklists: Checklists;
-	private _comments: Comments;
-	private _customFields: CustomFields;
-	private _dependencies: Dependencies;
-	private _folders: Folders;
+	private _attachments!: Attachments;
+	private _checklists!: Checklists;
+	private _comments!: Comments;
+	private _customFields!: CustomFields;
+	private _dependencies!: Dependencies;
+	private _folders!: Folders;
+	private _lists!: Lists;
 
 	constructor() {
 		this.request = new Request(this.root);
@@ -29,6 +31,7 @@ export class ClickUp {
 		this._customFields = new CustomFields(this.request);
 		this._dependencies = new Dependencies(this.request);
 		this._folders = new Folders(this.request);
+		this._lists = new Lists(this.request);
 	}
 
 	public setPersonalApiKey(key: string) {
@@ -64,4 +67,10 @@ export class ClickUp {
 	get Folders() {
 		return this._folders;
 	}
+
+	get Lists() {
+		return this._lists;
+	}
 }
+
+const api = new ClickUp();

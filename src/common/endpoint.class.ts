@@ -1,6 +1,6 @@
 import { Request } from "./request.class";
 
-type Query = { [i: string]: string | number };
+type Query = { [i: string]: string | number | undefined };
 
 export class Endpoint {
 	constructor(
@@ -9,10 +9,15 @@ export class Endpoint {
 	) {}
 
 	private joinPaths(path: string, queryOpts?: Query) {
-		const queryStr = Object.keys(queryOpts)
-			.map((key) => `${key}=${queryOpts[key]}`)
-			.join("&");
-		return [[this.path, path].join("/"), queryStr].join("?");
+		if (queryOpts) {
+			const queryStr = Object.keys(queryOpts)
+				.map((key) => `${key}=${queryOpts[key]}`)
+				.join("&");
+
+			return [[this.path, path].join("/"), queryStr].join("?");
+		} else {
+			return [this.path, path].join("/");
+		}
 	}
 
 	protected get<R>(path: string, queryOpts?: Query) {
